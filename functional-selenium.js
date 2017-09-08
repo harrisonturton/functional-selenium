@@ -71,7 +71,7 @@ module.exports = {
 
 	// Create a new WebDriver
 	// browserName :: String -> WebDriver
-	makeBrowser: browserName => new webdriver.Builder()
+	makeDriver: browserName => new webdriver.Builder()
 		.forBrowser(browserName)
 		.build(),
 
