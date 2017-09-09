@@ -119,12 +119,35 @@ module.exports = {
     // byXPath :: String -> By
     byXPath: path => By.xpath(path),
 
+    findByName: name => findElement(byName(name))
+
+    findByClassName: className => findElement(byClassName(className))
+
+    findByCss: css => findElement(byCss(css))
+
+    findById: id => findElement(byId(id))
+
+    findByJs: (js, ...var_args) => findElement(byJs(js, var_args))
+
+    findByLinkText: text => findElement(byLinkText(text))
+
+    findByPartialLinkText: text => findElement(byPartialLinkText(text))
+
+    findByXPath: path => findElement(byXPath(path))
+
     // Send a series of input keys to an element
-    // sendKeys :: String -> WebElement -> WebDriver
+    // sendKeys :: String -> WebElement -> WebElement
     sendKeys: keys => elem => {
         elem.sendKeys(keys);
         return elem;
     },
+
+    // Sends a series of input keys to an element, but returns the driver
+    // sendKeysDr :: String -> WebElement -> WebDriver
+    sendKeysDr: keys => elem => {
+        sendKeys(keys)(elem);
+        return elem.getDriver();
+    }
 
     // Retrieve the WebDriver instance from a WebElement
     // getDriver :: WebElement -> WebDriver
