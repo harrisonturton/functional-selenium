@@ -100,7 +100,8 @@ module.exports = {
 
     // Locator methd by a Javascript expression.
     // The expression must return an element or list of elements.
-    // byId :: String -> By
+    // var_args is passed to the script.
+    // byJs :: (String, var_args) -> By
     byJs: (js, ...var_args) => By.js(js, var_args),
 
     // Locator method by visible link text
@@ -119,21 +120,37 @@ module.exports = {
     // byXPath :: String -> By
     byXPath: path => By.xpath(path),
 
-    findByName: name => findElement(byName(name))
+    // See byName
+    // findByName :: String -> WebElement
+    findByName: name => findElement(byName(name)),
 
-    findByClassName: className => findElement(byClassName(className))
+    // See byClassName
+    // findByClassName :: String -> WebElement
+    findByClassName: className => findElement(byClassName(className)),
 
-    findByCss: css => findElement(byCss(css))
+    // See byCss
+    // findByCss :: String -> WebElement
+    findByCss: css => findElement(byCss(css)),
 
-    findById: id => findElement(byId(id))
+    // See byId
+    // findById :: String -> WebElement
+    findById: id => findElement(byId(id)),
 
-    findByJs: (js, ...var_args) => findElement(byJs(js, var_args))
+    // See byJs
+    // byJs :: (String, var_args) -> WebElement
+    findByJs: (js, ...var_args) => findElement(byJs(js, var_args)),
 
-    findByLinkText: text => findElement(byLinkText(text))
+    // See byLinkText
+    // findByLinkText :: String -> WebElement
+    findByLinkText: text => findElement(byLinkText(text)),
 
-    findByPartialLinkText: text => findElement(byPartialLinkText(text))
+    // See byPartialLinkText
+    // findByPartialLinkText :: String -> WebElement
+    findByPartialLinkText: text => findElement(byPartialLinkText(text)),
 
-    findByXPath: path => findElement(byXPath(path))
+    // See byXPath
+    // findByXPath :: String -> WebElement
+    findByXPath: path => findElement(byXPath(path)),
 
     // Send a series of input keys to an element
     // sendKeys :: String -> WebElement -> WebElement
@@ -147,7 +164,7 @@ module.exports = {
     sendKeysDr: keys => elem => {
         sendKeys(keys)(elem);
         return elem.getDriver();
-    }
+    },
 
     // Retrieve the WebDriver instance from a WebElement
     // getDriver :: WebElement -> WebDriver
@@ -167,7 +184,7 @@ module.exports = {
             driver.switchTo().window(handles[idx]);
         });
         return driver;
-    }
+    },
 
     // Swap Selenium focus to the active element
     // switchToActive :: WebDriver -> WebDriver
